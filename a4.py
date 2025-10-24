@@ -3,13 +3,9 @@
 
 
 class TTTBoard:
-    """A tic tac toe board
-
-    Attributes:
-        board - a list of '*'s, 'X's & 'O's. 'X's represent moves by player 'X', 'O's
-            represent moves by player 'O' and '*'s are spots no one has yet played on
-    """
-
+    def __init__(self) -> None:
+        board = ["*","*","*","*","*","*","*","*","*"]
+    
     pass
 
 
