@@ -4,7 +4,11 @@
 
 class TTTBoard:
     def __init__(self) -> None:
+        global board
         board = ["*","*","*","*","*","*","*","*","*"]
+
+    def __str__(self) -> None:
+        print(str(board[0]), str(board[1]))
     
     pass
 
