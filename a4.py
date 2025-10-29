@@ -5,12 +5,25 @@
 class TTTBoard:
     def __init__(self) -> None:
         global board
-        board = ["*","*","*","*","*","*","*","*","*"]
+        board = ['*','*','*','*','*','*','*','*','*']
 
     def __str__(self) -> None:
-        print(str(board[0]), str(board[1]))
+        return f"{board[0]} {board[1]} {board[2]}\n{board[3]} {board[4]} {board[5]}\n{board[6]} {board[7]} {board[8]}"
     
-    pass
+    def make_move(self, player, pos):
+        square = board[pos]
+
+        if square == '*' and 0 <= pos <= 8:
+            board[pos] = player
+            return True
+        
+        else:
+            print("invalid move")
+            return False
+    
+    def has_won(self, player):
+
+        pass
 
 
 def play_tic_tac_toe() -> None:
@@ -63,6 +76,8 @@ if __name__ == "__main__":
     brd = TTTBoard()
     brd.make_move("X", 8)
     brd.make_move("O", 7)
+    print(brd)
+
 
     assert brd.game_over() == False
 
