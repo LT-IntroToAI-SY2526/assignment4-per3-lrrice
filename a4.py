@@ -4,17 +4,17 @@
 
 class TTTBoard:
     def __init__(self) -> None:
-        global board
-        board = ['*','*','*','*','*','*','*','*','*']
+        
+        self.board = ['*','*','*','*','*','*','*','*','*']
 
     def __str__(self) -> None:
-        return f"{board[0]} {board[1]} {board[2]}\n{board[3]} {board[4]} {board[5]}\n{board[6]} {board[7]} {board[8]}"
+        return f"{self.board[0]} {self.board[1]} {self.board[2]}\n{self.board[3]} {self.board[4]} {self.board[5]}\n{self.board[6]} {self.board[7]} {self.board[8]}"
     
     def make_move(self, player, pos):
-        square = board[pos]
+        square = self.board[pos]
 
         if square == '*' and 0 <= pos <= 8:
-            board[pos] = player
+            self.board[pos] = player
             return True
         
         else:
@@ -23,7 +23,19 @@ class TTTBoard:
     
     def has_won(self, player):
 
-        pass
+        winningC = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+        for combo in winningC:
+            if self.board[combo[0]] == player and self.board[combo[1]] == player and self.board[combo[2]] == player:
+                return True
+        return False
+
+    def game_over(self):
+
+        return self.has_won("X") or self.has_won("O") or '*' not in self.board
+
+    def clear_board(self):
+        self.board = ['*','*','*','*','*','*','*','*','*']
 
 
 def play_tic_tac_toe() -> None:
@@ -76,8 +88,8 @@ if __name__ == "__main__":
     brd = TTTBoard()
     brd.make_move("X", 8)
     brd.make_move("O", 7)
-    print(brd)
 
+    
 
     assert brd.game_over() == False
 
@@ -89,7 +101,7 @@ if __name__ == "__main__":
     assert brd.has_won("O") == False
     assert brd.game_over() == True
 
-    brd.clear()
+    brd.clear_board()
 
     assert brd.game_over() == False
 
@@ -104,4 +116,4 @@ if __name__ == "__main__":
     print("All tests passed!")
 
     # uncomment to play!
-    # play_tic_tac_toe()
+    play_tic_tac_toe()
